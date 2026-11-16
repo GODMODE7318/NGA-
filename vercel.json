@@ -1,0 +1,36 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "framework": null,
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/courses/diploma-in-cruise-hospitality-management/",
+      "destination": "/courses/diploma-in-cruise-and-hospitality-management-dchm/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/",
+      "destination": "/guides/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/merchant-navy-after-12th-guide-2026/",
+      "destination": "/guides/merchant-navy-after-12th/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/cruise-ship-jobs-indians-salary-roles/",
+      "destination": "/guides/cruise-ship-careers/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/gp-rating-course-fees-eligibility-career-scope/",
+      "destination": "/guides/gp-rating/",
+      "permanent": true
+    }
+  ]
+}
