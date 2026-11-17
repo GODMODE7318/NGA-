@@ -82,10 +82,11 @@
 .nga-course-photo video{display:block;width:100%;aspect-ratio:16/9;min-height:260px;object-fit:cover}
 @media(max-width:640px){.nga-course-photo video{min-height:0}}
 
-/* Industry previews: two wide cards preserve 16:9 and readable desktop video. */
-.industry-grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:1060px;margin-inline:auto}
+/* Industry previews retain four cards per desktop row. */
+.industry-grid{grid-template-columns:repeat(4,minmax(0,1fr));max-width:none;margin-inline:auto}
 .industry-photo{width:100%;height:auto;aspect-ratio:16/9;background:#ece6d8}
 .industry-photo video{object-fit:cover;object-position:center}
+@media(max-width:900px){.industry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.industry-grid{grid-template-columns:minmax(0,1fr)}}
 /* Location uses the same contact block in both footer and contact page. */
 .location-map{display:block;width:100%;height:175px;border:0;margin:12px 0;border-radius:4px;background:#ebe7dc}
