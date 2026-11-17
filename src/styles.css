@@ -81,3 +81,49 @@
 .hero-media video,.industry-photo video{width:100%;height:100%;object-fit:cover;display:block}
 .nga-course-photo video{display:block;width:100%;aspect-ratio:16/9;min-height:260px;object-fit:cover}
 @media(max-width:640px){.nga-course-photo video{min-height:0}}
+
+/* Industry previews: two wide cards preserve 16:9 and readable desktop video. */
+.industry-grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:1060px;margin-inline:auto}
+.industry-photo{width:100%;height:auto;aspect-ratio:16/9;background:#ece6d8}
+.industry-photo video{object-fit:cover;object-position:center}
+@media(max-width:640px){.industry-grid{grid-template-columns:minmax(0,1fr)}}
+/* Location uses the same contact block in both footer and contact page. */
+.location-map{display:block;width:100%;height:175px;border:0;margin:12px 0;border-radius:4px;background:#ebe7dc}
+.footer-contact address,.contact-location address{font-style:normal;line-height:1.65}
+.footer-contact address{font-size:.75rem;color:#dce4e7}
+.footer-contact .directions-link{display:inline-block;color:#e8cf87;font-size:.75rem}
+.contact-location{margin-top:28px;max-width:560px}.contact-location .location-map{height:250px}.contact-location .directions-link{font-weight:700;color:#775a0d}
+/* Separate, legible course details and wrapping inclusion rows. */
+.course-detail-section{background:#f8f1d8;color:#0b1d33}
+.course-detail-section h1,.course-detail-section h2,.course-detail-section p,.course-detail-section .subcourse-list li{color:#0b1d33}
+.course-detail-section .eyebrow,.course-detail-section .subcourse-list .icon{color:#9a7610}
+.course-detail-section .nga-highlights>div{background:#fff;border:1px solid #c9a227;border-radius:4px}
+.course-detail-section .nga-highlights strong{color:#8a6911}
+.nga-course-box .subcourse-list,.course-detail .subcourse-list{display:grid;grid-template-columns:minmax(0,1fr);columns:auto}
+.nga-course-box .subcourse-list li,.course-detail .subcourse-list li{display:flex;min-width:0;align-items:flex-start}
+.nga-course-box .subcourse-list li .icon,.course-detail .subcourse-list li .icon{flex:0 0 auto}
+.nga-course-box .subcourse-list li span,.course-detail .subcourse-list li span{min-width:0;overflow-wrap:anywhere}
+
+/* Mobile navigation panel */
+.mobile-menu-head{display:none}
+@media(max-width:1120px){
+ body.menu-open{overflow:hidden}
+ .primary-nav{position:fixed;inset:0;z-index:250;background:#fff;padding:20px 22px 88px;overflow-y:auto;overscroll-behavior:contain}
+ .primary-nav.open{display:block}
+ .mobile-menu-head{display:flex;align-items:center;gap:12px;margin-bottom:34px;min-width:0}
+ .mobile-menu-head>a:first-child{margin-right:auto;min-width:0}
+ .mobile-menu-head .brand-logo{width:min(175px,42vw);height:auto}
+ .mobile-menu-head .btn{font-size:.7rem;white-space:nowrap;min-height:40px;padding:9px 10px}
+ .mobile-menu-close{flex:0 0 42px;width:42px;height:42px;display:grid;place-items:center}
+ .mobile-menu-close .icon{width:26px;height:26px}
+ .primary-nav>ul{display:grid;gap:16px;margin:0;padding:0}
+ .primary-nav>ul>li{border-bottom:1px solid #e0e5e7;min-width:0}
+ .primary-nav>ul>li>a{display:flex;align-items:center;width:100%;min-height:56px;padding:16px 0;font-size:18px;line-height:1.4}
+ .primary-nav a[aria-current="page"]{color:#a27b16;font-weight:700}
+}
+.employer-logo-item{width:150px;height:80px;flex:0 0 150px}
+.employer-logo-item img{width:150px;height:80px;object-fit:contain}
+@media(max-width:640px){.employer-logo-item{width:105px;height:56px;flex-basis:105px}.employer-logo-item img{width:105px;height:56px}}
+.nga-course-photo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.cta-location{margin-top:26px;max-width:540px}.cta-location h3{color:#fff}.cta-location p,.cta-location address,.cta-location a{color:#fff}.cta-location address{font-style:normal;line-height:1.65}.cta-location .location-map{height:210px}.cta-location .directions-link{display:inline-block;font-weight:700;color:#e8cf87}
+@media(max-width:1120px){body.menu-open .site-header{z-index:140}body.menu-open .mobile-action-bar{z-index:150}}

@@ -1,0 +1,41 @@
+NATIONAL GLOBAL ACADEMY — UPDATED FILES ONLY
+
+This is a cumulative update relative to the previous complete baseline `national-global-academy-corrected.zip`. It supersedes the earlier updated-files ZIP. It is not a full site.
+
+1. Extract the corrected baseline into a project directory.
+2. Extract this update ZIP into that same directory, overwriting matching files.
+3. Delete the following superseded source/assets (the archive cannot delete files on extraction):
+   public/assets/logos/viking.png
+   public/assets/videos/food.mp4
+   src/nga-legacy.mjs
+
+4. Run `npm run build`, `npm run check`, then `npm start`. Rebuilding removes obsolete output pages and recreates dist/. Do not deploy the baseline's prebuilt dist/.
+5. Deploy only to NGA's existing authorised Vercel project after access and claims verification. No deployment was performed by this package.
+
+Updated/new project files:
+   README.md
+   build.mjs
+   public/assets/course-photos/fast-track.jpg
+   public/assets/logos/NEW_SOURCES.txt
+   public/assets/logos/viking.svg
+   public/assets/videos/aviation-poster.jpg
+   public/assets/videos/aviation.mp4
+   public/assets/videos/cruise-poster.jpg
+   public/assets/videos/cruise.mp4
+   public/assets/videos/hospitality-poster.jpg
+   public/assets/videos/hospitality.mp4
+   public/assets/videos/merchant-poster.jpg
+   public/assets/videos/merchant.mp4
+   server.mjs
+   site.config.mjs
+   src/admin.html
+   src/admin.js
+   src/components.mjs
+   src/main.js
+   src/nga-pages.mjs
+   src/styles.css
+   src/subcourses-data.mjs
+   vercel.json
+
+
+Important limitations: Vercel admin login and persistent storage are not implemented. Local admin only is a demonstration. Earnings, licence guarantee, 12-seat count and other client-supplied claims must be substantiated before publishing. The transparent NGA logo was not supplied. The cruise hero image is AI-generated; the cruise video is an unbranded overhead excerpt, not the preferred branded 3-second shot. Google Maps rendering/pin and the postal code need confirmation. The Viking SVG source restricts non-commercial use; obtain commercial permissions. See README.md for details.

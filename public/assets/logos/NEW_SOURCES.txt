@@ -9,3 +9,5 @@ Trademark and reuse permissions and any implied employer connections must be ver
 cunard.svg: https://cdn.freebiesupply.com/logos/large/2x/cunard-line-logo-svg-vector.svg
 viking.png: https://images.seeklogo.com/logo-png/63/2/viking-cruises-logo-png_seeklogo-637865.png
 msc.svg: https://upload.wikimedia.org/wikipedia/commons/0/09/MSC_Cruises_de_logo.svg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+viking.svg: https://static.cdnlogo.com/logos/v/11/viking-cruises.svg . Site lists non-commercial purposes; commercial rights require approval.

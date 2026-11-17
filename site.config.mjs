@@ -16,7 +16,7 @@ export const site = {
   whatsapp: '918858334842', // Country code + number, digits only, e.g. 919876543210
   email: 'support@nationalglobalacademy.com', // e.g. admissions@nationalglobalacademy.com
   emailDisplay: 'support@nationalglobalacademy.com',
-  address: '',
+  address: 'Bhutani Alphathum, Sector 90, Noida, Uttar Pradesh 201304',
   mapsEmbedUrl: '', // [CONFIRM: Google Maps embed URL, not a regular maps link.]
   googleBusinessProfile: '', // [CONFIRM: Public Google Business Profile URL.]
 
@@ -39,8 +39,8 @@ export const site = {
   defaultMessage: 'Hello National Global Academy, I would like free counselling about courses and admissions.',
 
   // Manually maintained seat count, not a live inventory
-  batchSeatsStart: 12, // Update from verified admissions information
-  batchSeatsMin: 3
+  batchSeatsStart: null, // Set only after the academy verifies availability
+  batchSeatsMin: null
 };
 
 if (state.settings && typeof state.settings === 'object') Object.assign(site, state.settings);

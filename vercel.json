@@ -8,6 +8,41 @@
   "trailingSlash": true,
   "redirects": [
     {
+      "source": "/courses/",
+      "destination": "/courses/all/",
+      "permanent": true
+    },
+    {
+      "source": "/courses/cruise-line-hospitality/",
+      "destination": "/courses/all/#cruise",
+      "permanent": true
+    },
+    {
+      "source": "/courses/merchant-navy/",
+      "destination": "/courses/all/#merchant-navy",
+      "permanent": true
+    },
+    {
+      "source": "/courses/aviation/",
+      "destination": "/courses/all/#aviation",
+      "permanent": true
+    },
+    {
+      "source": "/courses/hospitality/",
+      "destination": "/courses/all/#hospitality",
+      "permanent": true
+    },
+    {
+      "source": "/cruise-line-careers/",
+      "destination": "/courses/all/#cruise",
+      "permanent": true
+    },
+    {
+      "source": "/merchant-navy-careers/",
+      "destination": "/courses/all/#merchant-navy",
+      "permanent": true
+    },
+    {
       "source": "/courses/diploma-in-cruise-hospitality-management/",
       "destination": "/courses/diploma-in-cruise-and-hospitality-management-dchm/",
       "permanent": true

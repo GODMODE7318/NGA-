@@ -1,6 +1,6 @@
 (()=>{
  const toggle=document.querySelector('[data-menu-toggle]'),nav=document.querySelector('[data-nav]');
- if(toggle&&nav)toggle.addEventListener('click',()=>{let open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));nav.classList.toggle('open',!open)});
+ if(toggle&&nav){const close=nav.querySelector('[data-menu-close]');const setMenu=open=>{toggle.setAttribute('aria-expanded',String(open));nav.classList.toggle('open',open);document.body.classList.toggle('menu-open',open);if(open)close?.focus();else toggle.focus()};toggle.addEventListener('click',()=>setMenu(toggle.getAttribute('aria-expanded')!=='true'));close?.addEventListener('click',()=>setMenu(false));nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');document.body.classList.remove('menu-open')}));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.classList.contains('open'))setMenu(false)})}
  // Respect reduced-motion preferences and avoid playing videos off screen.
  const videos=[...document.querySelectorAll('[data-stock-video]')];
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');

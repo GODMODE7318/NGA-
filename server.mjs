@@ -1,11 +1,13 @@
 import http from 'node:http';
-import {readFile,stat,writeFile,mkdir,rename} from 'node:fs/promises';
+import {readFile,stat,writeFile,mkdir,rename,readdir} from 'node:fs/promises';
 import {createReadStream} from 'node:fs';
 import {dirname,extname,join,normalize} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {randomBytes,timingSafeEqual} from 'node:crypto';
 import {spawn} from 'node:child_process';
 import {subcourses} from './src/subcourses-data.mjs';
+import {site} from './site.config.mjs';
+import {editableDefaults} from './src/nga-pages.mjs';
 const base=dirname(fileURLToPath(import.meta.url)),root=join(base,'dist'),port=Number(process.env.PORT||3000);
 const dataFile=process.env.NGA_DATA_FILE || join(process.env.HOME||'/home/user','nga-private-data','content.json');
 const configured=Boolean(process.env.NGA_ADMIN_EMAIL&&process.env.NGA_ADMIN_PASSWORD);
@@ -15,14 +17,14 @@ function same(a,b){let x=Buffer.from(String(a||'')),y=Buffer.from(String(b||''))
 function json(res,status,data){res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(data))}
 async function readData(){try{return JSON.parse(await readFile(dataFile,'utf8'))}catch(e){if(e.code==='ENOENT')return {};throw e}}
 async function saveData(data){await mkdir(dirname(dataFile),{recursive:true,mode:0o700});let tmp=dataFile+'.tmp';await writeFile(tmp,JSON.stringify(data,null,2),{mode:0o600});await rename(tmp,dataFile)}
-async function body(req){let chunks=[],n=0;for await(const c of req){n+=c.length;if(n>300000)throw Error('Request too large');chunks.push(c)}return JSON.parse(Buffer.concat(chunks).toString('utf8')||'{}')}
+async function body(req,limit=300000){let chunks=[],n=0;for await(const c of req){n+=c.length;if(n>limit)throw Error('Request too large');chunks.push(c)}return JSON.parse(Buffer.concat(chunks).toString('utf8')||'{}')}
 function sessionToken(req){return (req.headers.cookie||'').split(';').map(s=>s.trim()).find(s=>s.startsWith('nga_session='))?.slice(12)}
 function session(req){let token=sessionToken(req);let s=sessions.get(token);if(!s||s.until<Date.now()){sessions.delete(token);return false}return true}
 function isSameOrigin(req){let o=req.headers.origin;try{return o&&new URL(o).host===req.headers.host}catch{return false}}
 function rebuild(){return new Promise((resolve,reject)=>{let child=spawn(process.execPath,['build.mjs'],{cwd:base,env:{...process.env,NGA_DATA_FILE:dataFile},stdio:'ignore'});child.on('close',c=>c===0?resolve():reject(Error('Build failed')));child.on('error',reject)})}
 const server=http.createServer(async(req,res)=>{try{
  const url=new URL(req.url,'http://localhost'),path=decodeURIComponent(url.pathname);
- const redirects={'/courses/diploma-in-cruise-hospitality-management/':'/courses/diploma-in-cruise-and-hospitality-management-dchm/','/blog/':'/guides/','/blog/merchant-navy-after-12th-guide-2026/':'/guides/merchant-navy-after-12th/','/blog/cruise-ship-jobs-indians-salary-roles/':'/guides/cruise-ship-careers/','/blog/gp-rating-course-fees-eligibility-career-scope/':'/guides/gp-rating/'};
+ const redirects={'/courses/':'/courses/all/','/courses/cruise-line-hospitality/':'/courses/all/#cruise','/courses/merchant-navy/':'/courses/all/#merchant-navy','/courses/aviation/':'/courses/all/#aviation','/courses/hospitality/':'/courses/all/#hospitality','/cruise-line-careers/':'/courses/all/#cruise','/merchant-navy-careers/':'/courses/all/#merchant-navy','/courses/diploma-in-cruise-hospitality-management/':'/courses/diploma-in-cruise-and-hospitality-management-dchm/','/blog/':'/guides/','/blog/merchant-navy-after-12th-guide-2026/':'/guides/merchant-navy-after-12th/','/blog/cruise-ship-jobs-indians-salary-roles/':'/guides/cruise-ship-careers/','/blog/gp-rating-course-fees-eligibility-career-scope/':'/guides/gp-rating/'};
  if(redirects[path]){res.writeHead(308,{Location:redirects[path]});return res.end()}
  if(path.startsWith('/assets/videos/')&&/^\/assets\/videos\/[a-z0-9-]+\.mp4$/.test(path)){
   const file=join(root,path);let size;try{size=(await stat(file)).size}catch{return json(res,404,{error:'Not found'})}
@@ -43,8 +45,10 @@ const server=http.createServer(async(req,res)=>{try{
    if(!configured)return json(res,503,{error:'Storage not configured'});let ip='enquiry:'+(req.socket.remoteAddress||'unknown'),rate=attempts.get(ip)||{count:0,until:Date.now()+600000};if(Date.now()>rate.until)rate={count:0,until:Date.now()+600000};if(++rate.count>25)return json(res,429,{error:'Please try again later.'});attempts.set(ip,rate);let d=await body(req),keys=['name','age','location','qualification','experience','stcw','mobile','email','interest','help','source'];if(keys.some(k=>d[k]!==undefined&&typeof d[k]!=='string'))return json(res,400,{error:'Invalid data'});if(!d.name||!d.age||!d.location||!d.qualification||!['Yes','No'].includes(d.stcw)||!/^\d{10}$/.test(d.mobile)||!['Cruise Industry','Merchant Navy','Aviation','Hospitality'].includes(d.interest))return json(res,400,{error:'Invalid data'});let x={};for(const k of keys)x[k]=(d[k]||'').slice(0,500);let state=await readData();state.enquiries=state.enquiries||[];state.enquiries.unshift({...x,id:randomBytes(12).toString('hex'),date:new Date().toISOString(),status:'New',notes:''});await saveData(state);return json(res,201,{ok:true});
   }
   if(!session(req))return json(res,401,{error:'Sign in required.'});
-  if(path==='/api/admin/data'&&req.method==='GET'){let d=await readData();if(!d.courses)d.courses=subcourses;d.settings=d.settings||{};d.batch=d.batch||{name:'Upcoming Batch',seatsLeft:12};d.enquiries=d.enquiries||[];return json(res,200,d)}
-  if(path==='/api/admin/data'&&req.method==='PUT'){let d=await body(req),old=await readData();let allowed=['courses','settings','batch','hero','why','industry','logos','homeFaq'];for(const k of allowed)if(k in d)old[k]=d[k];await saveData(old);await rebuild();return json(res,200,{ok:true})}
+  if(path==='/api/admin/media'&&req.method==='GET'){let dir=join(base,'public/assets/uploads');let files=[];try{files=(await readdir(dir)).filter(x=>/^[a-f0-9]{24}\.(jpg|png|webp|mp4)$/.test(x)).map(x=>'/assets/uploads/'+x)}catch(e){if(e.code!=='ENOENT')throw e}return json(res,200,{files})}
+  if(path==='/api/admin/media'&&req.method==='POST'){let d=await body(req,22*1024*1024);if(typeof d.content!=='string'||typeof d.type!=='string')return json(res,400,{error:'Invalid file'});let buf=Buffer.from(d.content,'base64');if(buf.length>15*1024*1024||!buf.length)return json(res,400,{error:'File must be under 15 MB'});let ext=buf.subarray(0,3).equals(Buffer.from([255,216,255]))?'jpg':buf.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))?'png':buf.toString('ascii',0,4)==='RIFF'&&buf.toString('ascii',8,12)==='WEBP'?'webp':buf.toString('ascii',4,8)==='ftyp'?'mp4':null;if(!ext)return json(res,400,{error:'Only JPEG, PNG, WebP or MP4 files are accepted.'});let name=randomBytes(12).toString('hex')+'.'+ext,dir=join(base,'public/assets/uploads');await mkdir(dir,{recursive:true});await writeFile(join(dir,name),buf);await rebuild();return json(res,201,{path:'/assets/uploads/'+name})}
+  if(path==='/api/admin/data'&&req.method==='GET'){let d=await readData();for(const [k,v] of Object.entries(editableDefaults()))if(!(k in d))d[k]=v;if(!d.courses)d.courses=subcourses;d.settings=d.settings||{phone:site.phone,phoneDisplay:site.phoneDisplay,whatsapp:site.whatsapp,email:site.email,emailDisplay:site.emailDisplay,address:site.address,mapsEmbedUrl:site.mapsEmbedUrl,social:site.social};d.batch=d.batch||{name:'Upcoming Batch',announcement:'Upcoming Batch, Limited Seats Left, Only 12 Seats Left, Enquire Now'};d.enquiries=d.enquiries||[];return json(res,200,d)}
+  if(path==='/api/admin/data'&&req.method==='PUT'){let d=await body(req),old=await readData();let allowed=['courses','settings','batch','hero','why','industry','logos','homeFaq','contactFaq','steps','about','footerText','guides','testimonials'];for(const k of allowed)if(k in d)old[k]=d[k];await saveData(old);await rebuild();return json(res,200,{ok:true})}
   if(path==='/api/admin/enquiry'&&req.method==='PUT'){let d=await body(req),old=await readData(),e=(old.enquiries||[]).find(x=>x.id===d.id);if(!e)return json(res,404,{error:'Enquiry not found'});if(!['New','Contacted','Counselling Done','Enrolled','Closed'].includes(d.status)||typeof d.notes!=='string')return json(res,400,{error:'Invalid update'});e.status=d.status;e.notes=d.notes.slice(0,2000);await saveData(old);return json(res,200,{ok:true})}
   if(path==='/api/admin/logout'&&req.method==='POST'){sessions.delete(sessionToken(req));res.setHeader('Set-Cookie','nga_session=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0');return json(res,200,{ok:true})}
   return json(res,404,{error:'Not found'});

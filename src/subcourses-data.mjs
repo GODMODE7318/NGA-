@@ -14,7 +14,7 @@ export const subcourses = [
     image: 'https://images.unsplash.com/photo-1667604987970-4bbd6ed51d0d?auto=format&fit=crop&w=1200&q=80',
     imageAlt: 'Dining table overlooking the water', imageSlot: 'Cruise Professional poster: waterside dining, replace with approved course photograph.',
     description: 'This 2-month program includes an e-learning exam and an exit exam. It also brings together resume preparation, personalized interview preparation and a choice of department.',
-    inclusions: ['E-Learning Exam + Exit Exam', 'Professional Resume by Industry Experts', '30 Days Personalized Interview Preparation', '100% Job Support Opportunity', 'Detailed Job Profile Guidance', 'Choose Your Preferred Department: Food and Beverage Service, Housekeeping, or Kitchen Operations (Culinary)']
+    inclusions: ['STCW Training Certificate', 'Cruise License (CDC/SID)', 'Professional Resume by Industry Experts', '30 Days Personalized Interview Preparation', '100% Job Support Opportunity', 'Detailed Job Profile Guidance', 'E-Learning Exam + Exit Exam', 'Choose Your Preferred Department: Food and Beverage Service, Housekeeping, or Kitchen Operations (Culinary)', 'Accommodation in Mumbai During Training Period', 'Daily Lunch Provided Throughout the Training Period']
   },
   {
     name: 'Diploma in Cruise and Hospitality Management (DCHM)', parent: 'Cruise Industry', duration: '12 Months', isoDuration: 'P12M', path: '/courses/diploma-in-cruise-and-hospitality-management-dchm/',
