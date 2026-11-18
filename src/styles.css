@@ -170,3 +170,13 @@
  .course-detail .course-poster-icons li{flex-direction:column;text-align:center;gap:6px;font-size:.62rem;letter-spacing:.05em;text-transform:uppercase}
  .course-detail .course-poster-icons .icon{width:20px;height:20px;padding:7px}
 }
+
+/* About page: icon features in "Guidance for the journey ahead". */
+.benefit-features{gap:44px 48px;margin-top:34px}
+.benefits>.benefit-feature{border:0;padding:0}
+.benefit-feature-head{display:flex;align-items:center;gap:16px;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid rgba(201,162,39,.55)}
+.benefit-feature-icon{flex:0 0 52px;width:52px;height:52px;display:grid;place-items:center;border:1px solid rgba(201,162,39,.7);border-radius:50%;background:rgba(201,162,39,.08)}
+.benefit-features .benefit-feature-icon .icon{width:24px;height:24px;color:#e8cf87}
+.benefit-features .benefit-feature h3{margin:0;font-family:var(--serif);font-size:1.22rem;line-height:1.25;color:#fff}
+.benefit-features .benefit-feature p{margin:0;font-size:.9rem;line-height:1.65;color:#c8d3d9}
+@media(max-width:640px){.benefit-features{gap:32px}.benefit-feature-icon{flex-basis:46px;width:46px;height:46px}.benefit-features .benefit-feature h3{font-size:1.1rem}}
