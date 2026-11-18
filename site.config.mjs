@@ -38,6 +38,10 @@ export const site = {
   intakes: ['Monthly Batch'],
   defaultMessage: 'Hello National Global Academy, I would like free counselling about courses and admissions.',
 
+  // Course poster overlay (course name, duration and topic icons over each course photo).
+  // Set to false to show the plain course photos exactly as before.
+  coursePosters: true,
+
   // Manually maintained seat count, not a live inventory
   batchSeatsStart: null, // Set only after the academy verifies availability
   batchSeatsMin: null

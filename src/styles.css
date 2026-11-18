@@ -128,3 +128,39 @@
 .nga-course-photo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
 .cta-location{margin-top:26px;max-width:540px}.cta-location h3{color:#fff}.cta-location p,.cta-location address,.cta-location a{color:#fff}.cta-location address{font-style:normal;line-height:1.65}.cta-location .location-map{height:210px}.cta-location .directions-link{display:inline-block;font-weight:700;color:#e8cf87}
 @media(max-width:1120px){body.menu-open .site-header{z-index:140}body.menu-open .mobile-action-bar{z-index:150}}
+
+/* Industry cards: intro paragraph, aligned headings and bottom-aligned links. */
+.industry-card{display:flex;flex-direction:column}
+.industry-content{display:flex;flex-direction:column;flex:1 1 auto}
+.industry-badge-slot{height:28px;margin-bottom:10px;display:flex;align-items:center}
+.industry-badge-slot .trending-badge{margin:0}
+.industry-content h3{margin:0 0 12px}
+.industry-content .industry-intro{flex:1 1 auto;margin:0 0 22px;font-size:.86rem;line-height:1.7;color:var(--slate)}
+.industry-content .text-link{margin-top:auto;align-self:flex-start}
+@media(max-width:640px){.industry-badge-slot:empty{display:none}}
+
+/* Two-column inclusion list with matching Duration and Certificate headers. */
+.nga-highlights-wide{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px}
+.nga-highlights-wide>div{min-width:0}
+.subcourse-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px;margin:0 0 20px}
+.subcourse-cols .subcourse-list{margin:0;align-content:start}
+.subcourse-cols .subcourse-list+.subcourse-list{margin-top:0}
+@media(max-width:900px){.nga-course-box .subcourse-cols{grid-template-columns:minmax(0,1fr)}.nga-course-box .subcourse-cols .subcourse-list+.subcourse-list{margin-top:10px}}
+@media(max-width:640px){.subcourse-cols{grid-template-columns:minmax(0,1fr)}.subcourse-cols .subcourse-list+.subcourse-list{margin-top:10px}.course-detail .subcourse-cols .subcourse-list+.subcourse-list{margin-top:15px}}
+
+/* Course poster overlay. Disable with coursePosters:false in site.config.mjs. */
+.course-poster{position:relative;overflow:hidden;background:#0b1d33}
+.course-poster img{display:block;width:100%;min-height:280px;object-fit:cover}
+.course-poster-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;gap:12px;padding:clamp(14px,4%,26px);color:#fff;background:linear-gradient(180deg,rgba(11,29,51,.88) 0%,rgba(11,29,51,.5) 40%,rgba(11,29,51,.4) 58%,rgba(11,29,51,.92) 100%)}
+.course-poster-kicker{display:block;margin-bottom:6px;font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#e8cf87}
+.course-poster-title{display:block;max-width:94%;font-family:var(--serif);font-weight:700;font-size:clamp(1.05rem,1.7vw,1.45rem);line-height:1.15;color:#fff}
+.course-poster-duration{display:inline-block;margin-top:10px;padding:4px 10px;background:#c9a227;color:#0b1d33;font-size:.7rem;font-weight:700;letter-spacing:.04em}
+.course-poster-icons{list-style:none;margin:0;padding:10px 0 0;border-top:1px solid rgba(201,162,39,.6);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 10px}
+.course-poster-icons li{display:flex;align-items:center;gap:7px;font-size:.66rem;font-weight:600;line-height:1.25;letter-spacing:.01em;color:#fff;min-width:0;overflow-wrap:normal;word-break:normal;hyphens:none}
+.course-poster-icons .icon{width:13px;height:13px;padding:5px;border:1px solid rgba(232,207,135,.75);border-radius:50%;color:#e8cf87;box-sizing:content-box;flex:0 0 auto}
+.course-detail .course-poster-title{font-size:clamp(1.3rem,2.6vw,2.2rem)}
+@media(min-width:901px){
+ .course-detail .course-poster-icons{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:8px}
+ .course-detail .course-poster-icons li{flex-direction:column;text-align:center;gap:6px;font-size:.62rem;letter-spacing:.05em;text-transform:uppercase}
+ .course-detail .course-poster-icons .icon{width:20px;height:20px;padding:7px}
+}
