@@ -139,14 +139,20 @@
 .industry-content .text-link{margin-top:auto;align-self:flex-start}
 @media(max-width:640px){.industry-badge-slot:empty{display:none}}
 
-/* Two-column inclusion list with matching Duration and Certificate headers. */
-.nga-highlights-wide{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px}
-.nga-highlights-wide>div{min-width:0}
+/* Course boxes: centred photo, slim Duration and Certificate bars, two-column points. */
+.nga-course-box{align-items:center}
+.nga-course-box h3{margin:0 0 8px}
+.nga-course-box>div>p{margin:0}
+.nga-highlights-bars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px;margin:18px 0 0}
+.nga-highlights-bars>div{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 6px;min-width:0;min-height:0;padding:9px 14px;text-align:center;line-height:1.3}
+.nga-highlights-bars span{color:var(--navy);font-weight:600}
+.nga-course-box h4{margin:20px 0 12px}
 .subcourse-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px;margin:0 0 20px}
 .subcourse-cols .subcourse-list{margin:0;align-content:start}
-.subcourse-cols .subcourse-list+.subcourse-list{margin-top:0}
+.course-detail .nga-highlights-bars+h2{margin-top:30px}
+.course-detail .subcourse-cols{margin-bottom:28px}
 @media(max-width:900px){.nga-course-box .subcourse-cols{grid-template-columns:minmax(0,1fr)}.nga-course-box .subcourse-cols .subcourse-list+.subcourse-list{margin-top:10px}}
-@media(max-width:640px){.subcourse-cols{grid-template-columns:minmax(0,1fr)}.subcourse-cols .subcourse-list+.subcourse-list{margin-top:10px}.course-detail .subcourse-cols .subcourse-list+.subcourse-list{margin-top:15px}}
+@media(max-width:640px){.subcourse-cols{grid-template-columns:minmax(0,1fr)}.subcourse-cols .subcourse-list+.subcourse-list{margin-top:10px}.course-detail .subcourse-cols .subcourse-list+.subcourse-list{margin-top:15px}.nga-highlights-bars{gap:10px}.nga-highlights-bars>div{padding:9px 8px}}
 
 /* Course poster overlay. Disable with coursePosters:false in site.config.mjs. */
 .course-poster{position:relative;overflow:hidden;background:#0b1d33}

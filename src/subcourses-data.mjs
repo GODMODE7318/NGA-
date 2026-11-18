@@ -12,11 +12,11 @@ export const subcourses = [
   },
   {
     name: 'Cruise Career Professional Program', parent: 'Cruise Industry', duration: '2 Months', isoDuration: 'P2M', path: '/courses/cruise-career-professional-program/',
-    posterIcons: [['STCW Training','shield'],['Cruise License','idcard'],['Interview Preparation','briefcase'],['Food and Beverage','cloche'],['Housekeeping','bed']],
+    posterIcons: [['STCW Training','shield'],['Cruise License','idcard'],['Interview Preparation','briefcase'],['Professional Resume','file'],['E-learning','laptop']],
     image: 'https://images.unsplash.com/photo-1667604987970-4bbd6ed51d0d?auto=format&fit=crop&w=1200&q=80',
     imageAlt: 'Dining table overlooking the water', imageSlot: 'Cruise Professional poster: waterside dining, replace with approved course photograph.',
     description: 'This 2-month program includes an e-learning exam and an exit exam. It also brings together resume preparation, personalized interview preparation and a choice of department.',
-    inclusions: ['STCW Training Certificate', 'Cruise License (CDC/SID)', 'Professional Resume by Industry Experts', '30 Days Personalized Interview Preparation', '100% Job Support Opportunity', 'Detailed Job Profile Guidance', 'E-Learning Exam + Exit Exam', 'Choose Your Preferred Department: Food and Beverage Service, Housekeeping, or Kitchen Operations (Culinary)', 'Accommodation in Mumbai During Training Period', 'Daily Lunch Provided Throughout the Training Period']
+    inclusions: ['STCW Training Certificate', 'Cruise License (CDC/SID)', 'Professional Resume by Industry Experts', '30 Days Personalized Interview Preparation', '100% Job Support Opportunity', 'Detailed Job Profile Guidance', 'E-Learning Exam + Exit Exam', 'Choose Your Preferred Department', 'Accommodation in Mumbai During Training Period', 'Daily Lunch Provided Throughout the Training Period']
   },
   {
     name: 'Diploma in Cruise and Hospitality Management (DCHM)', parent: 'Cruise Industry', duration: '12 Months', isoDuration: 'P12M', path: '/courses/diploma-in-cruise-and-hospitality-management-dchm/',
@@ -24,8 +24,7 @@ export const subcourses = [
     image: 'https://images.unsplash.com/photo-1667604963377-93dda0e11b1b?auto=format&fit=crop&w=1200&q=80',
     imageAlt: 'Tables and chairs on a waterside deck', imageSlot: 'DCHM poster: waterside hospitality, replace with approved course photograph.',
     description: 'This 12-month diploma brings together hospitality principles, guest relations and food and beverage service. It includes professional interview preparation and six months of industrial training with a stipend.',
-    inclusions: ['Restaurant Service, Bar Service, Housekeeping Certification Course', 'Food and Beverage Service', 'Professional Interview Preparation', 'Detailed Job Profile Guidance', '6 Month Industrial Training (With Stipend)', '100% Job Placement Support (Domestic and International)', 'Professional Grooming and Styling', 'Confidence and Public Speaking', 'Body Language and Posture', 'Advanced Communication Skills', 'Resume Building Workshops', 'Mock Interview Sessions', 'Industry Interaction Programs'],
-    twoColumn: true
+    inclusions: ['Restaurant Service, Bar Service, Housekeeping Certification Course', 'Food and Beverage Service', 'Professional Interview Preparation', 'Detailed Job Profile Guidance', '6 Month Industrial Training (With Stipend)', '100% Job Placement Support (Domestic and International)', 'Professional Grooming and Styling', 'Confidence and Public Speaking', 'Body Language and Posture', 'Advanced Communication Skills', 'Resume Building Workshops', 'Mock Interview Sessions', 'Industry Interaction Programs']
   },
   {
     name: 'GP Rating', parent: 'Merchant Navy', duration: '6 Months', isoDuration: 'P6M', path: '/courses/gp-rating/',
